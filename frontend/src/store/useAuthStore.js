@@ -92,13 +92,15 @@ export const useAuthStore = create((set,get)=>({
     connectSocket :async()=>{
         const {authUser} = get()
         if(!authUser || get().socket?.connected) return
+        console.log("socket connection Started");
+        
         const socket=io(BASE_URL,{
             query:{
                 userId: authUser._id
             },
         })
         socket.connect()
-        
+        console.log("Socket connection done");
         set({socket:socket})
         socket.on("getOnlineUser", (userIds)=>{
             set({onlineUsers:userIds})
