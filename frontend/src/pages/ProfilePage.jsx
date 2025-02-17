@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuthStore } from '../store/useAuthStore'
-import avatar from "../../public/avatar.png"
+import avatar from "/avatar.png"
 import { Camera, Mail, User } from 'lucide-react'
 
 const ProfilePage = () => {
