@@ -22,22 +22,25 @@ function HomePage() {
         >
           Simple, Instant, Seamless Messaging
         </motion.div>
+        <div className="font-bold text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl flex flex-col justify-center items-center">
+
         <motion.div
           initial={{ y: "600%", opacity: 0 }}
           animate={{ y: 0, opacity: 100 }}
           transition={{ duration: 1, ease: "easeOut" ,delay:8}}
           className=" font-bold text-2xl hidden pt-10 lg:block"
-        >
-          Even Jedi talk here
+          >
+          Even Jedi chat here
         </motion.div>
         <motion.div
           initial={{ y: "600%", opacity: 0 }}
           animate={{ y: 0, opacity: 100 }}
           transition={{ duration: 1, ease: "easeOut" ,delay:9}}
           className=" font-bold text-2xl hidden lg:block"
-        >
+          >
           Where are you?
         </motion.div>
+          </div>
       </div>
 
       <div className="absolute left-0 top-0 w-full pt-28 px-5 hidden lg:block">
@@ -49,7 +52,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjHHa3NgdkdztLJfcQhTfjuADuc9q_6ykxA&s" />
             </div>
           </div>
           <div className="chat-header">Obi-Wan Kenobi<time className="text-xs opacity-50">12:45</time></div>
@@ -65,7 +68,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://i.redd.it/what-happened-to-anakins-scar-above-his-eye-v0-5f3yoz0ou0891.jpg?width=1300&format=pjpg&auto=webp&s=825cbce722e15a614896e18309a1eaf9c43e7337" />
             </div>
           </div>
           <div className="chat-header">Anakin<time className="text-xs opacity-50">12:46</time></div>
@@ -81,7 +84,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjHHa3NgdkdztLJfcQhTfjuADuc9q_6ykxA&s" />
             </div>
           </div>
           <div className="chat-header">Obi-Wan Kenobi<time className="text-xs opacity-50">12:47</time></div>
@@ -97,7 +100,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://i.redd.it/what-happened-to-anakins-scar-above-his-eye-v0-5f3yoz0ou0891.jpg?width=1300&format=pjpg&auto=webp&s=825cbce722e15a614896e18309a1eaf9c43e7337" />
             </div>
           </div>
           <div className="chat-header">Anakin<time className="text-xs opacity-50">12:48</time></div>
@@ -113,7 +116,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjHHa3NgdkdztLJfcQhTfjuADuc9q_6ykxA&s" />
             </div>
           </div>
           <div className="chat-header">Obi-Wan Kenobi<time className="text-xs opacity-50">12:49</time></div>
@@ -129,7 +132,7 @@ function HomePage() {
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img alt="Avatar" src="https://i.redd.it/what-happened-to-anakins-scar-above-his-eye-v0-5f3yoz0ou0891.jpg?width=1300&format=pjpg&auto=webp&s=825cbce722e15a614896e18309a1eaf9c43e7337" />
             </div>
           </div>
           <div className="chat-header">Anakin<time className="text-xs opacity-50">12:50</time></div>
