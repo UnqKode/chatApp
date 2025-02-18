@@ -6,7 +6,7 @@ import ChatContainer from "../components/ChatContainer";
 import { motion } from "framer-motion";
 import { Mails, Layers } from "lucide-react";
 import toast from "react-hot-toast";
-import BlogContainer from "../components/BlogContainers";
+import BlogContainer from "../components/BlogContainer";
 import CreateBlog from "../components/CreateBlog";
 
 function HomePage() {
