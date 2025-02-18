@@ -43,14 +43,14 @@ const ProfilePage = () => {
                 <input type='file' id='avatar-upload' className='hidden' accept='image/*' onChange={handleImageUpdate} disabled={isUpdatingProfile}/>
               </label>
             </div>  
-            <p className='text-sm text-zinc-400'>
+            <p className='text-sm text-primary-content'>
               {isUpdatingProfile ? "Uploading" : "Click on camera icon to update your photo"}
             </p>
           </div>
 
           <div className='space-y-6'>
             <div className='space-y-1.5'>
-              <div className='text-sm text-zinc-400 flex items-center gap-2'>
+              <div className='text-sm text-primary-content flex items-center gap-2'>
                 <User className="size-4" />
                 Full Name
               </div>
@@ -58,24 +58,24 @@ const ProfilePage = () => {
             </div>
 
             <div className='space-y-1.5'>
-              <div className='text-sm text-zinc-400 flex items-center gap-2'>
+              <div className='text-sm text-primary-content flex items-center gap-2'>
                 <Mail className="size-4" />
                 Email Address
               </div>
-              <p className='px-4 py-2.5 bg-base-200 rounded-lg border'>{authUser?.email}</p>
+              <p className='px-3 py-2.5 bg-base-200 rounded-lg border'>{authUser?.email}</p>
             </div>
           </div>
 
-          <div className='mt-6 bg-base-300 rouded-xl p-6'>
+          <div className='mt-6 bg-base-300 rouded-xl p-5'>
           <h2 className='text-lg font-medium mb-4'>Account Information</h2>
           <div className='space-y-3 text-sm'>
             <div className='flex items-center justify-between py-2 border-b border-zinc-700'>
               <span>Member since</span>
               <span>{authUser.createdAt?.split("T")[0]}</span>
             </div>
-            <div className='flex item-center justify-between py-2'>
+            <div className='flex item-center justify-between py-1'>
               <span>Account Status</span>
-              <span className='text-green-500'>Active</span>
+              <span className='text-primary  bg-primary-content rounded p-1'>Active</span>
             </div>
           </div>
           </div>
