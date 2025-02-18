@@ -5,7 +5,8 @@ import MessageInput from "./MessageInput.jsx";
 import MessageSkeleton from "./skeleton/MessageSkeleton.jsx";
 import { useAuthStore } from "../store/useAuthStore.js";
 import { formatMessageTime } from "../lib/utils.js";
-import { X } from "lucide-react";
+import { Download, X } from "lucide-react";
+import axios from "axios";
 
 const ChatContainer = () => {
   const {
@@ -61,20 +62,44 @@ const ChatContainer = () => {
     setshowImage(!showImage); // Toggle the visibility of the modal
   };
 
-  
+  const handleDownload = async (url) => {
+    try {
+      const response = await axios.get(url, {
+        responseType: "blob", 
+      });
+
+      const blobUrl = URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `imageFrom${selectedUser.fullName}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl); // Clean up memory
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
+  };
 
   return (
     <div className="flex-1 flex flex-col overflow-auto">
       <ChatHeader />
       <div
-        className={`bg-primary h-[80vh] w-3/5 z-10 m-5 absolute left-1/4 rounded-3xl p-4 transition-opacity duration-500 ${
+        className={`bg-neutral h-[80vh] w-3/5 z-10 m-5 absolute left-1/4 rounded-xl p-4 transition-opacity duration-500 ${
           !showImage ? "opacity-0 pointer-events-none" : " opacity-100"
-        }`}
+        } shadow-md shadow-primary`}
       >
+        <div className="flex justify-between">
+
         <button onClick={toggleImageModal}>
-          <X size={32} />
+          <X size={32} className=" bg-primary-content  shadow-md shadow-primary text-primary" />
         </button>
-        <div className="flex justify-center items-center h-full">
+        <p className="text-primary flex justify-center items-center text-md">Image from {selectedUser.fullName}</p>
+        <button onClick={() => handleDownload(OpenImage)}>
+            <Download size={32} className={` bg-primary-content  p-1 ${!showImage ? "hidden" : "block"} shadow-md shadow-primary text-primary`} />
+        </button>
+        </div>
+        <div className="flex justify-center items-center h-full ">
           <img
             src={OpenImage}
             className="h-auto w-2/3 max-w-[30vw] object-cover"
@@ -130,4 +155,4 @@ const ChatContainer = () => {
   );
 };
 
-export default ChatContainer;
+export default ChatContainer; 
