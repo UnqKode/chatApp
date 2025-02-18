@@ -7,6 +7,7 @@ import messageRoutes from "./routes/message.routes.js"
 import cors from "cors"
 import { app , server } from './lib/socket.js'
 import path from "path"
+import blogRoutes from "./routes/blog.routes.js"
 
 dotenv.config()
 const port = process.env.PORT
@@ -22,6 +23,7 @@ app.use(cors({
 
 app.use("/api/auth",authRoutes)
 app.use("/api/message",messageRoutes)
+app.use("/api/blog",blogRoutes)
 
 if(true){
     app.use(express.static(path.join(__dirname,"../frontend/dist")))
