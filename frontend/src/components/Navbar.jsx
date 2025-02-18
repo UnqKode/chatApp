@@ -1,12 +1,13 @@
 import React from 'react'
 import { useAuthStore } from '../store/useAuthStore'
 import { Link } from 'react-router-dom'
-import { LogOut, MessagesSquare, Settings, User } from 'lucide-react'
+import { AreaChart, LogInIcon, LogOut, MessagesSquare, Settings, SignalIcon, SignatureIcon, SquareArrowUpRightIcon, User } from 'lucide-react'
 
 function Navbar() {
 
   const {logout,authUser} = useAuthStore();
 
+  
   return (
     <header className='bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-base-100/10'>
       <div className='container mx-auto px-4 h-16'>
@@ -16,7 +17,7 @@ function Navbar() {
             <div className='size-9 rounded-lg bg-primary/10 flex items-center justify-center'>
               <MessagesSquare className='w-5 h-5 text-primary' />
             </div>
-            <h1 className='text-lg font-bold'>Chat.Io</h1>
+            <h1 className='text-lg font-bold'>Chat.io</h1>
             </Link>
           </div>
 
@@ -27,8 +28,12 @@ function Navbar() {
             </Link>
 
             {authUser && (
-
               <>
+                <Link to={"/home"} className='btn btn-sm gap-2'>
+                  <AreaChart className='size-5'/>
+                  <span className='hidden sm:inline' >ChatBox</span>
+                </Link>
+
                 <Link to={"/profile"} className='btn btn-sm gap-2'>
                   <User className='size-5'/>
                   <span className='hidden sm:inline' >Profile</span>
@@ -41,6 +46,20 @@ function Navbar() {
 
               </>
             )}
+
+            {!authUser && (
+              <>
+                <Link to={"/login"} className='btn btn-sm gap-2'>
+                  <LogInIcon className='size-5'/>
+                  <span className='hidden sm:inline' >Login</span>
+                </Link>
+                <Link to={"/signUp"} className='btn btn-sm gap-2'>
+                  <SquareArrowUpRightIcon className='size-5'/>
+                  <span className='hidden sm:inline' >Sign Up</span>
+                </Link>
+              </>
+            )}
+
 
           </div>
         </div>
