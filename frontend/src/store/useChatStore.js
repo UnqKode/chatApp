@@ -10,6 +10,16 @@ export const useChatStore = create((set, get) => ({
     selectedUser: null,
     isUserLoading: false,
     isMessagesLoading: false,
+    autoCorrect:false,
+
+    setAutoCorrect: (autoCorrect) => {
+        const correct = get().autoCorrect;
+        set({ autoCorrect : !correct });
+        if(!correct) {
+            toast.success("AutoCorrect Enabled")
+        }
+    },
+    
 
 
     getUsers: async () => {
