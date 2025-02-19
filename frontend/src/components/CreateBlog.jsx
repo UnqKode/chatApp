@@ -2,22 +2,22 @@ import { X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useBlogStore } from "../store/useBlogStore";
+import { motion } from "framer-motion";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [categories, setCategories] = useState([]);
   const [description, setDescription] = useState("");
-  const [creaeBlog , setcreateBlog] = useState(true)
+  const [createBlog, setCreateBlog] = useState(true);
 
+  const fileInputRef = useRef(null);
+  const { sendBlog, ceateBlog, setceateBlog } = useBlogStore();
 
-  
-  const fileInputRef = useRef(null)
-  const { sendBlog , ceateBlog , setceateBlog} = useBlogStore();
-  
   useEffect(() => {
-    setcreateBlog(ceateBlog)
+    setCreateBlog(ceateBlog);
   }, [ceateBlog]);
+
   // Handle category selection
   const handleCategoryChange = (e) => {
     const category = e.target.id;
@@ -43,44 +43,45 @@ const CreateBlog = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Log or submit form data
-    console.log({
-      title,
-      text : description,
-      categories,
-      imagePreview,
-    });
 
-    // Reset form after submission
-    setTitle("");
-    setImagePreview(null);
-    setCategories([]);
-    setDescription("");
-    if(!title.trim() || !description) return toast.error("Title or Description is Missing")
+    if (!title.trim() || !description)
+      return toast.error("Title or Description is Missing");
+
     try {
-        await sendBlog({
-            title: title.trim(),
-            text: description.trim(),
-            categories: categories, 
-            image: imagePreview, // Assuming it's a base64 string or URL
-        });
-        if(fileInputRef.current) fileInputRef.current.value=""
-          
+      await sendBlog({
+        title: title.trim(),
+        text: description.trim(),
+        categories: categories,
+        image: imagePreview, // Assuming it's a base64 string or URL
+      });
+
+      if (fileInputRef.current) fileInputRef.current.value = "";
+
+      // Reset form after submission
+      setTitle("");
+      setImagePreview(null);
+      setCategories([]);
+      setDescription("");
     } catch (error) {
-        
+      console.error(error);
     }
   };
 
-  const createBlog = ()=>{
-    setcreateBlog(!creaeBlog)
-    console.log(ceateBlog);
-    
-  }
+  const toggleCreateBlog = () => {
+    setCreateBlog(!createBlog);
+  };
 
   return (
-    <aside className={`h-full w-[90vw] max-w-lg lg:w-72 border-r border-base-300 flex-col duration-200 p-5 transition-all ${creaeBlog ? "fles"  : "hidden"} `}>
-        < X size={32}  onClick={()=>createBlog()} />
+    <motion.aside
+      initial={{ opacity: 0, x: -1 }}
+      animate={{ opacity: createBlog ? 1 : 0, x: createBlog ? 0 : -1 }}
+      transition={{ duration: 0.5 }}
+      className={`absolute z-50 bg-primary-content mb-4 w-[90vw] lg:max-w-96 border-r border-base-300 flex-col duration-200 p-5 ${
+        createBlog ? "flex" : "hidden"
+      }`}
+    >
+      <X size={32} onClick={toggleCreateBlog} className="cursor-pointer" />
+
       <form className="space-y-6" onSubmit={handleSubmit}>
         {/* Title Label */}
         <label
@@ -88,8 +89,6 @@ const CreateBlog = () => {
           className="text-primary font-semibold text-2xl flex items-center justify-center"
         >
           Create Blog
-
-
         </label>
 
         {/* Title Input */}
@@ -106,70 +105,40 @@ const CreateBlog = () => {
         <div className="flex flex-col gap-2">
           <label className="text-base-content font-bold">Select Categories</label>
 
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="tech"
-              className="checkbox checkbox-sm"
-              onChange={handleCategoryChange}
-            />
-            <label htmlFor="tech" className="text-sm">
-              Tech
-            </label>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="health"
-              className="checkbox checkbox-sm"
-              onChange={handleCategoryChange}
-            />
-            <label htmlFor="health" className="text-sm">
-              Health
-            </label>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="lifestyle"
-              className="checkbox checkbox-sm"
-              onChange={handleCategoryChange}
-            />
-            <label htmlFor="lifestyle" className="text-sm">
-              Lifestyle
-            </label>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="education"
-              className="checkbox checkbox-sm"
-              onChange={handleCategoryChange}
-            />
-            <label htmlFor="education" className="text-sm">
-              Education
-            </label>
-          </div>
+          {["tech", "health", "lifestyle", "education"].map((cat) => (
+            <div key={cat} className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id={cat}
+                className="checkbox checkbox-sm"
+                onChange={handleCategoryChange}
+              />
+              <label htmlFor={cat} className="text-sm capitalize">
+                {cat}
+              </label>
+            </div>
+          ))}
         </div>
 
         {/* Image Input */}
+        <div className="flex gap-5">
+
         <input
           type="file"
           accept="image/*"
           className="file-input file-input-bordered file-input-primary w-full"
           onChange={handleImageChange}
+          ref={fileInputRef}
         />
 
         {/* Image Preview */}
         {imagePreview && (
           <div className="mt-3">
-            <img src={imagePreview} alt="Image Preview" className="w-full h-40 object-cover rounded-lg" />
+            <img src={imagePreview} alt="Image Preview" className="w-auto h-10 object-cover rounded-lg " />
           </div>
         )}
 
+        </ div>
         {/* Description Textarea */}
         <textarea
           id="description"
@@ -184,7 +153,7 @@ const CreateBlog = () => {
           Submit
         </button>
       </form>
-    </aside>
+    </motion.aside>
   );
 };
 
