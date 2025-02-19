@@ -6,7 +6,7 @@ import ChatContainer from "../components/ChatContainer";
 import { motion } from "framer-motion";
 import { Mails, Layers } from "lucide-react";
 import toast from "react-hot-toast";
-import BlogContainer from "../components/BlogContainer";
+import BlogContainer from "../components/BlogContainers";
 import CreateBlog from "../components/CreateBlog";
 
 function HomePage() {
@@ -66,7 +66,7 @@ function HomePage() {
           y: chatPosition, // Control chat position dynamically
         }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`items-center justify-center pt-1 px-4 ${opacity === 0 ? "hidden" : "flex"}`}
+        className={`items-center justify-center mb-4 px-4 ${opacity === 0 ? "hidden" : "flex"}`}
       >
         <div className="bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]">
           <div className="flex h-full rounded-lg overflow-hidden">
