@@ -115,7 +115,15 @@ const BlogContainer = () => {
           ))}
         </div>
       ) : (
-        <p>No blogs available.</p>
+        <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center flex-col gap-2"> 
+            <span className="loading loading-ring loading-xl bg-primary">
+            </span>
+              <p className="text-2xl text-primary">
+                No Blogs Available
+                </p>
+          </div>
+        </div>
       )}
     </div>
   );
